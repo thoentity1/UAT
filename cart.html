@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Phantom studioZ - Shopping Cart</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fdfdfd;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    header {
+      background: #ff6f61;
+      padding: 20px;
+      text-align: center;
+      color: white;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
+    h2 {
+      margin-bottom: 10px;
+    }
+    .cart-item {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input[type="text"], input[type="email"], input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .button {
+      margin-top: 20px;
+      padding: 12px 20px;
+      background-color: #ff6f61;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .button:hover {
+      background-color: #ff3b2e;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Phantom studioZ Shopping Cart</h1>
+</header>
+
+<div class="container">
+  <form action="https://formspree.io/f/YOUR_FORMSPREE_ENDPOINT" method="POST" onsubmit="setTimeout(() => window.location.href='https://pay.yoco.com/YOUR_YOCO_LINK', 500);">
+    
+    <div class="cart-item">
+      <h2>Braiding & Hair Styling (R850)</h2>
+      <label for="qty1">Quantity:</label>
+      <input type="number" id="qty1" name="Braiding & Hair Styling (R850) Quantity" min="0" value="0">
+    </div>
+
+    <div class="cart-item">
+      <h2>Makeup Artistry (R1200)</h2>
+      <label for="qty2">Quantity:</label>
+      <input type="number" id="qty2" name="Makeup Artistry (R1200) Quantity" min="0" value="0">
+    </div>
+
+    <div class="cart-item">
+      <h2>Nail Technology (R950)</h2>
+      <label for="qty3">Quantity:</label>
+      <input type="number" id="qty3" name="Nail Technology (R950) Quantity" min="0" value="0">
+    </div>
+
+    <h2>Customer Details</h2>
+    <label for="name">Full Name:</label>
+    <input type="text" id="name" name="Customer Name" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="Customer Email" required>
+
+    <label for="address">Delivery Address:</label>
+    <input type="text" id="address" name="Delivery Address" required>
+
+    <button type="submit" class="button">Submit Order & Pay</button>
+  </form>
+</div>
+
+</body>
+</html>
