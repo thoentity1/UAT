@@ -1,31 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Phantom studioZ - Retail</title>
+  <meta charset="UTF-8">
+  <title>Phantom studioZ Retail</title>
   <style>
     body {
-      margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background-color: #ffffff;
-      color: #000000; /* Make all font black */
+      background-color: #f9f9f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
     }
 
     header {
-      background-color: #f0f0f0;
-      color: #000000;
+      background-color: #2c2c2c;
+      color: white;
       padding: 20px;
       text-align: center;
     }
 
-    h1, p {
+    h1 {
       margin: 0;
+    }
+
+    .category-title {
+      background-color: #ff6f61;
+      color: white;
+      padding: 10px 20px;
+      margin: 30px 0 10px;
+      font-size: 20px;
     }
 
     .product-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 20px;
-      padding: 30px;
-      max-width:
+      padding: 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .product-card {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .product-card h3 {
+      margin: 10px 0 5px;
+    }
+
+    .product-card p {
+      font-size: 14px;
+      color: #555;
+    }
+
+    .product-meta {
+      font-size: 14px;
+      margin-top: 8px;
+      color: #444;
+    }
+
+    .add-to-cart {
+      margin-top: auto;
+      padding: 10px;
+      background-color: #2c2c2c;
+      color: white;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    .add-to-cart:hover {
+      background-color: #444;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 14px;
+      padding: 20px;
+      color: #777;
+      background-color: #eee;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Phantom studioZ Retail</h1>
+    <p>Shop our beauty essentials — premium salon products</p>
+  </header>
+
+  <div class="category-title">Hair Care</div>
+  <div class="product-grid">
+    <div class="product-card">
+      <img src="images/shampoo.jpeg" alt="Shampoo">
+      <h3>Keratin Shampoo</h3>
+      <p>Smooth & strengthen your hair.</p>
+      <div class="product-meta">Price: R95 | Unit: 250ml</div>
+      <a href="https://pay.yoco.com/pay/example-link1" class="add-to-cart" target="_blank">Buy Now</a>
+    </div>
+
+    <div class="product-card">
+      <img src="images/conditioner.jpeg" alt="Conditioner">
+      <h3>Hydrating Conditioner</h3>
+      <p>Moisture-rich formula for silky hair.</p>
+      <div class="product-meta">Price: R110 | Unit: 250ml</div>
+      <a href="https://pay.yoco.com/pay/example-link2" class="add-to-cart" target="_blank">Buy Now</a>
+    </div>
+  </div>
+
+  <div class="category-title">Makeup</div>
+  <div class="product-grid">
+    <div class="product-card">
+      <img src="images/foundation.jpeg" alt="Foundation">
+      <h3>Liquid Foundation</h3>
+      <p>Lightweight, full coverage foundation.</p>
+      <div class="product-meta">Price: R140 | Unit: 30ml</div>
+      <a href="https://pay.yoco.com/pay/example-link3" class="add-to-cart" target="_blank">Buy Now</a>
+    </div>
+
+    <div class="product-card">
+      <img src="images/lipstick.jpeg" alt="Lipstick">
+      <h3>Matte Lipstick</h3>
+      <p>Long-wear, vibrant color.</p>
+      <div class="product-meta">Price: R80 | Unit: 1 stick</div>
+      <a href="https://pay.yoco.com/pay/example-link4" class="add-to-cart" target="_blank">Buy Now</a>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 Phantom studioZ | All rights reserved
+  </footer>
+
+</body>
+</html>
