@@ -113,6 +113,35 @@
 </form>
 
 <div id="resultMessage"></div>
+    <script>
+  const form = document.getElementById('addressForm');
+  const result = document.getElementById('resultMessage');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById('name').value.trim();
+    const address = document.getElementById('address').value.trim();
+    const city = document.getElementById('city').value.trim();
+    const zip = document.getElementById('zip').value.trim();
+
+    try {
+      await db.collection("customer_addresses").add({
+        name,
+        address,
+        city,
+        zip,
+        timestamp: new Date()
+      });
+      result.textContent = "✅ Address saved successfully!";
+      form.reset();
+    } catch (error) {
+      console.error("❌ Error saving address: ", error);
+      result.textContent = "Error saving address. Try again.";
+    }
+  });
+</script>
+
 
 
     <h2>Customer Details</h2>
