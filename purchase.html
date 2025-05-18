@@ -7,7 +7,7 @@
   <script>
     // Initialize EmailJS with your public key
     (function() {
-      emailjs.init("YOUR_PUBLIC_KEY"); // 🔁 Replace with your EmailJS public key
+      emailjs.init("R8YQ6uFuEg24lKXoj"); // 🔁 Replace with your EmailJS public key
     })();
   </script>
   <style>
@@ -81,7 +81,7 @@
   document.getElementById("order-form").addEventListener("submit", function(e) {
     e.preventDefault();
 
-    emailjs.sendForm("service_ps73eee", "template_4rnqox7", this)
+    emailjs.sendForm("service_ps73eee", "template_xkluzkn", this)
       .then(() => {
         alert("Order sent successfully!");
         this.reset();
