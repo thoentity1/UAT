@@ -106,7 +106,7 @@
 <!-- EmailJS SDK -->
 <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 <script>
-  emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS Public Key
+  emailjs.init("R8YQ6uFuEg24lKXoj"); // Replace with your EmailJS Public Key
 
   let cart = [];
 
@@ -148,7 +148,7 @@
       total: `R${total}`
     };
 
-    emailjs.send("service_ps73eee", "YOUR_TEMPLATE_ID", params)
+    emailjs.send("service_ps73eee", "template_44npsap", params)
       .then(function () {
         alert("Order submitted! Confirmation sent to thoentity@gmail.com");
         cart = [];
