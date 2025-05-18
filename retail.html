@@ -3,6 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <title>Phantom studioZ Retail</title>
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    (function() {
+      emailjs.init("R8YQ6uFuEg24lKXoj"); // Replace with your actual public key
+    })();
+  </script>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -94,76 +100,18 @@
   <p><strong>Total:</strong> R<span id="total">0</span></p>
 
   <form id="order-form">
-  <h3>Delivery Address</h3>
-  <input type="text" name="name" placeholder="Full Name" required>
-  <input type="text" name="address" placeholder="Street Address" required>
-  <input type="text" name="city" placeholder="City" required>
-  <input type="text" name="zip" placeholder="Postal Code" required>
-  <input type="hidden" name="cart" id="cart-data">
-  <input type="hidden" name="total" id="cart-total">
-  <input type="submit" value="Submit Order">
-</form>
-
+    <h3>Delivery Address</h3>
+    <input type="text" name="name" placeholder="Full Name" required>
+    <input type="text" name="address" placeholder="Street Address" required>
+    <input type="text" name="city" placeholder="City" required>
+    <input type="text" name="zip" placeholder="Postal Code" required>
+    <input type="hidden" name="cart" id="cart-data">
+    <input type="hidden" name="total" id="cart-total">
+    <input type="submit" value="Submit Order">
+  </form>
 </div>
 
-<!-- EmailJS SDK -->
-<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 <script>
-  emailjs.init("R8YQ6uFuEg24lKXoj"); // Replace with your EmailJS Public Key
-
-  let cart = [];
-
-  function addToCart(product, price) {
-    cart.push({ product, price });
-    updateCart();
-  }
-
-  function updateCart() {
-    const cartList = document.getElementById("cart-items");
-    cartList.innerHTML = "";
-    let total = 0;
-
-    cart.forEach(item => {
-      total += item.price;
-      const li = document.createElement("li");
-      li.textContent = `${item.product} - R${item.price}`;
-      cartList.appendChild(li);
-    });
-
-    document.getElementById("total").textContent = total;
-  }
-
-  document.getElementById("order-form").addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    const name = document.getElementById("name").value;
-    const address = document.getElementById("address").value;
-    const city = document.getElementById("city").value;
-    const zip = document.getElementById("zip").value;
-
-    const cartSummary = cart.map(item => `${item.product} - R${item.price}`).join(", ");
-    const total = cart.reduce((sum, item) => sum + item.price, 0);
-
-    const params = {
-      name: name,
-      address: `${address}, ${city}, ${zip}`,
-      cart: cartSummary,
-      total: `R${total}`
-    };
-
-    emailjs.send("service_ps73eee", "template_44npsap", params)
-      .then(function () {
-        alert("Order submitted! Confirmation sent to thoentity@gmail.com");
-        cart = [];
-        updateCart();
-        document.getElementById("order-form").reset();
-      }, function (error) {
-        console.error("EmailJS error:", error);
-        alert("Failed to send order email.");
-      });
-  });
-</script>
-  <script>
   let cart = [];
 
   function addToCart(product, price) {
@@ -192,21 +140,22 @@
     cartTotalInput.value = total;
   }
 
-  // Handle form submission with EmailJS
-  document.getElementById('order-form').addEventListener('submit', function(event) {
+  document.getElementById("order-form").addEventListener("submit", function(event) {
     event.preventDefault();
 
     emailjs.sendForm('service_ps73eee', 'template_44npsap', this)
-      .then(function() {
-        alert('Order email sent successfully!');
+      .then(function(response) {
+        alert("Order placed successfully!");
+        console.log("SUCCESS!", response.status, response.text);
       }, function(error) {
-        alert('Failed to send order email: ' + JSON.stringify(error));
+        alert("Failed to send order. Check console.");
+        console.error("FAILED...", error);
       });
   });
 </script>
 
-
 </body>
 </html>
+
 
      
