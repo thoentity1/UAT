@@ -1,122 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Phantom studioZ - Courses</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #fdfdfd;
-      margin: 0;
-      padding: 0;
-      color: #333;
-    }
-    header {
-      background-color: #ff6f61;
-      padding: 20px;
-      color: white;
-      text-align: center;
-    }
-    .container {
-      max-width: 900px;
-      margin: 30px auto;
-      padding: 20px;
-    }
-    .course-card {
-      background: #fff;
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-      margin-bottom: 30px;
-    }
-    .course-card h2 {
-      margin-top: 0;
-    }
-    label {
-      display: block;
-      margin-top: 10px;
-      font-weight: bold;
-    }
-    input[type="text"],
-    input[type="email"] {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-    .button {
-      margin-top: 15px;
-      background-color: #ff6f61;
-      color: white;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 6px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    .button:hover {
-      background-color: #ff3b2e;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Phantom studioZ Salon Academy</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #fefdfc;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            background-color: #ff6f61;
+            padding: 15px 25px;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 20px;
+        }
+
+        nav a {
+            margin-left: 15px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        h2 {
+            color: #222;
+        }
+
+        .highlight {
+            font-weight: bold;
+            text-decoration: underline;
+            text-underline-offset: 6px;
+            text-decoration-color: #ffa726;
+        }
+
+        .button {
+            background-color: #ff6f61;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+
+        .button:hover {
+            background-color: #ff3b2e;
+        }
+
+        .course-box {
+            background: #f3f3f3;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .course-title {
+            font-weight: bold;
+        }
+
+        .course-highlight {
+            color: #ff6f61;
+        }
+
+        .img-box {
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .img-box img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        footer {
+            background-color: #f0f0f0;
+            padding: 15px;
+            text-align: center;
+            font-size: 14px;
+            color: #777;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 600px) {
+            nav a {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    </style>
 </head>
 <body>
 
 <header>
-  <h1>Phantom studioZ Salon Academy</h1>
-  <p>Enroll in Our Professional Courses</p>
+    <h1>Phantom studioZ</h1>
+    <nav>
+        <a href="Index.html">Home</a>
+        <a href="Courses.html">Courses</a>
+        <a href="Retail.html">Retail</a>
+        <a href="Contact.html">Contact</a>
+        <a href="SignIn.html">SignIn</a>
+            </nav>
 </header>
 
 <div class="container">
 
-  <!-- Course 1 -->
-  <div class="course-card">
-    <h2>Braiding and Hair Styling - R850</h2>
-    <form action="https://f"https://formspree.io/f/xovdezpy" method="POST" onsubmit="setTimeout(() => window.location.href='https://pay.yoco.com/YOUR_YOCO_LINK_1', 500);">
-      <label>Your Name</label>
-      <input type="text" name="name" required>
-      <label>Email</label>
-      <input type="email" name="email" required>
-           <input type="hidden" name="course" value="Braiding and Hair Styling - R850">
-      <div></div>
-      <a href="cart.html" class="button">Proceed to Checkout</a>
+    <h2>Master Your Beauty Skills With <span class="highlight">Phantom studioZ</span> Salon Academy</h2>
+    <p>Enroll now to gain hands-on experience in mastering salon skills from industry professionals. Our short courses are designed to deliver quick skills with significant impact.</p>
+    <p><a href="enroll.html">Enroll Now</a></p>
 
-    </form>
-  </div>
+    <h2><span class="highlight">Unlock Your Potential</span> in the Beauty Industry</h2>
+    <p>Discover the transformative power of beauty with Phantom studioZ Salon Academy. Join a community that fosters creativity and professional growth.</p>
 
-  <!-- Course 2 -->
-  <div class="course-card">
-    <h2>Makeup Artistry - R1200</h2>
-    <form action="https://formspree.io/f/YOUR_FORMSPREE_ENDPOINT" method="POST" onsubmit="setTimeout(() => window.location.href='https://pay.yoco.com/YOUR_YOCO_LINK_2', 500);">
-      <label>Your Name</label>
-      <input type="text" name="name" required>
-      <label>Email</label>
-      <input type="email" name="email" required>
-      <label>Delivery Address</label>
-      <input type="text" name="address" required>
-      <input type="hidden" name="course" value="Makeup Artistry - R1200">
-      <button type="submit" class="button">Add to Cart & Pay</button>
-    </form>
-  </div>
+    <div class="course-box">
+        <p class="course-title">Master the Art of <span class="course-highlight">Hair Styling</span></p>
+        <p>Hands-on training that empowers you to create stunning looks. Elevate your skills quickly and effectively!</p>
+    </div>
 
-  <!-- Course 3 -->
-  <div class="course-card">
-    <h2>Nail Technology - R950</h2>
-    <form action="https://formspree.io/f/YOUR_FORMSPREE_ENDPOINT" method="POST" onsubmit="setTimeout(() => window.location.href='https://pay.yoco.com/YOUR_YOCO_LINK_3', 500);">
-      <label>Your Name</label>
-      <input type="text" name="name" required>
-      <label>Email</label>
-      <input type="email" name="email" required>
-      <label>Delivery Address</label>
-      <input type="text" name="address" required>
-      <input type="hidden" name="course" value="Nail Technology - R950">
-      <button type="submit" class="button">Add to Cart & Pay</button>
-    </form>
-  </div>
- 
+    <div class="course-box">
+        <p class="course-title">Become a Certified <span class="course-highlight">Makeup Artist</span></p>
+        <p>Learn the techniques that will set you apart in the beauty industry.</p>
+    </div>
 
+    <div class="course-box">
+        <p class="course-title">Explore Cutting-Edge <span class="course-highlight">Nail Technology</span></p>
+        <p>Stay updated with trends and deliver exceptional services with our nail technology courses.</p>
+    </div>
+
+     <div class="course-box">
+        <p class="course-title">Explore Cutting-Edge <span class="course-highlight">Salon Management</span></p>
+        <p>Management skills theory and practicals.</p>
+    </div>
+
+    <div class="img-box">
+        <p><strong>Course Preview:</strong></p>
+        <img src="https://via.placeholder.com/300x200.png?text=Hair+Styling" alt="Hair Styling Preview">
+        <img src="https://via.placeholder.com/300x200.png?text=Makeup+Course" alt="Makeup Preview">
+        <img src="https://via.placeholder.com/300x200.png?text=Nail+Tech" alt="Nail Tech Preview">
+    </div>
 </div>
 
-</body>
-</html>
+<footer>
+    © 2025 Phantom studioZ Salon Academy | All Rights Reserved.
+   
