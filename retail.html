@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>Phantom studioZ Retail</title>
-  <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
-<script>
-  (function(){
-      emailjs.init("R8YQ6uFuEg24lKXoj"); // Replace with your actual public key
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    (function() {
+      emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your actual public key
     })();
   </script>
   <style>
@@ -99,7 +99,7 @@
   <ul id="cart-items"></ul>
   <p><strong>Total:</strong> R<span id="total">0</span></p>
 
- <form id="order-form">
+  <form id="order-form">
     <h3>Delivery Address</h3>
     <input type="text" name="name" placeholder="Full Name" required>
     <input type="text" name="address" placeholder="Street Address" required>
@@ -143,7 +143,7 @@
   document.getElementById("order-form").addEventListener("submit", function(event) {
     event.preventDefault();
 
-    emailjs.sendForm('service_ps73eee', 'template_xkluzkn', this)
+    emailjs.sendForm('service_ps73eee', 'template_XXXXXXX', this)
       .then(function(response) {
         alert("Order placed successfully!");
         console.log("SUCCESS!", response.status, response.text);
@@ -156,6 +156,7 @@
 
 </body>
 </html>
+
 
 
      
