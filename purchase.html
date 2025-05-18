@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Product Order</title>
+  <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    // Initialize EmailJS with your public key
+    (function() {
+      emailjs.init("YOUR_PUBLIC_KEY"); // 🔁 Replace with your EmailJS public key
+    })();
+  </script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      background-color: #f4f4f4;
+    }
+    form {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 500px;
+      margin: auto;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    input[type="text"], input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    input[type="submit"] {
+      background-color: #333;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<h2 style="text-align:center;">Place Your Order</h2>
+
+<form id="order-form">
+  <h3>Delivery Address</h3>
+  <input type="text" name="name" placeholder="Full Name" required>
+  <input type="text" name="address" placeholder="Street Address" required>
+  <input type="text" name="city" placeholder="City" required>
+  <input type="text" name="zip" placeholder="Postal Code" required>
+  <input type="hidden" name="cart" id="cart-data">
+  <input type="hidden" name="total" id="cart-total">
+  <input type="submit" value="Submit Order">
+</form>
+
+<script>
+  // Example cart for demo purpose
+  const cartItems = [
+    { product: "Revitalizing Shampoo", price: 95 },
+    { product: "Nail Care Kit", price: 150 }
+  ];
+
+  // Calculate cart values
+  function prepareCartData() {
+    let summary = [];
+    let total = 0;
+
+    cartItems.forEach(item => {
+      summary.push(`${item.product} - R${item.price}`);
+      total += item.price;
+    });
+
+    document.getElementById("cart-data").value = summary.join(", ");
+    document.getElementById("cart-total").value = "R" + total;
+  }
+
+  // Call it on page load
+  prepareCartData();
+
+  // EmailJS submission
+  document.getElementById("order-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    emailjs.sendForm("service_ps73eee", "template_4rnqox7", this)
+      .then(() => {
+        alert("Order sent successfully!");
+        this.reset();
+      }, (error) => {
+        console.error("EmailJS error:", error);
+        alert("Failed to send order. Check console for details.");
+      });
+  });
+</script>
+
+</body>
+</html>
