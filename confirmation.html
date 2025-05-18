@@ -11,7 +11,7 @@
 
   <script>
     (function() {
-      emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
+      emailjs.init("R8YQ6uFuEg24lKXoj"); // Replace with your EmailJS public key
     })();
 
     function sendConfirmationEmail() {
@@ -24,7 +24,7 @@
         message: "A new order has been confirmed and paid."
       };
 
-      emailjs.send("service_ps73eee", "YOUR_TEMPLATE_ID", params)
+      emailjs.send("service_ps73eee", "template_44npsap", params)
         .then(function(response) {
           console.log("✅ Email sent!", response.status, response.text);
         }, function(error) {
