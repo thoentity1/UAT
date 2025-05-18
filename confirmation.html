@@ -1,1 +1,25 @@
-template_44npsap
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+  (function(){
+    emailjs.init("YOUR_USER_ID"); // replace with your EmailJS user ID
+  })();
+
+  function sendConfirmationEmail() {
+    const params = {
+      to_email: "thoentity@gmail.com",
+      customer_name: localStorage.getItem("delivery") ? JSON.parse(localStorage.getItem("delivery")).name : "Customer",
+      message: "A new order has been paid for via Yoco."
+    };
+
+    emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", params)
+      .then(function(response) {
+        console.log("Email sent successfully!", response.status, response.text);
+      }, function(error) {
+        console.error("Email failed to send.", error);
+      });
+  }
+
+  // Call this after Yoco payment success
+  sendConfirmationEmail();
+</script>
+
