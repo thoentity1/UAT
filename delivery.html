@@ -1,0 +1,5 @@
+const deliveryInfo = {
+  name: document.getElementById("name").value,
+  address: document.getElementById("address").value
+};
+localStorage.setItem("delivery", JSON.stringify(deliveryInfo));
