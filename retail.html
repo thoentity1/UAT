@@ -94,13 +94,16 @@
   <p><strong>Total:</strong> R<span id="total">0</span></p>
 
   <form id="order-form">
-    <h3>Delivery Address</h3>
-    <input type="text" name="name" id="name" placeholder="Full Name" required>
-    <input type="text" name="address" id="address" placeholder="Street Address" required>
-    <input type="text" name="city" id="city" placeholder="City" required>
-    <input type="text" name="zip" id="zip" placeholder="Postal Code" required>
-    <input type="submit" value="Submit Order">
-  </form>
+  <h3>Delivery Address</h3>
+  <input type="text" name="name" placeholder="Full Name" required>
+  <input type="text" name="address" placeholder="Street Address" required>
+  <input type="text" name="city" placeholder="City" required>
+  <input type="text" name="zip" placeholder="Postal Code" required>
+  <input type="hidden" name="cart" id="cart-data">
+  <input type="hidden" name="total" id="cart-total">
+  <input type="submit" value="Submit Order">
+</form>
+
 </div>
 
 <!-- EmailJS SDK -->
