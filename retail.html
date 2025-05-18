@@ -86,7 +86,6 @@
     <p>R150 | 1 Set</p>
     <button onclick="addToCart('Nail Care Kit', 150)">Add to Cart</button>
   </div>
-  <!-- Add more products similarly -->
 </div>
 
 <div id="cart">
@@ -94,19 +93,23 @@
   <ul id="cart-items"></ul>
   <p><strong>Total:</strong> R<span id="total">0</span></p>
 
-  <form action="https://formspree.io/f/your-form-id" method="POST">
+  <form id="order-form">
     <h3>Delivery Address</h3>
-    <input type="text" name="name" placeholder="Full Name" required>
-    <input type="text" name="address" placeholder="Street Address" required>
-    <input type="text" name="city" placeholder="City" required>
-    <input type="text" name="zip" placeholder="Postal Code" required>
-    <input type="hidden" name="cart" id="cart-data">
+    <input type="text" name="name" id="name" placeholder="Full Name" required>
+    <input type="text" name="address" id="address" placeholder="Street Address" required>
+    <input type="text" name="city" id="city" placeholder="City" required>
+    <input type="text" name="zip" id="zip" placeholder="Postal Code" required>
     <input type="submit" value="Submit Order">
   </form>
 </div>
 
+<!-- EmailJS SDK -->
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 <script>
+  emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS Public Key
+
   let cart = [];
+
   function addToCart(product, price) {
     cart.push({ product, price });
     updateCart();
@@ -114,23 +117,51 @@
 
   function updateCart() {
     const cartList = document.getElementById("cart-items");
-    const cartDataInput = document.getElementById("cart-data");
     cartList.innerHTML = "";
     let total = 0;
-    let summary = [];
 
     cart.forEach(item => {
       total += item.price;
-      summary.push(item.product + " - R" + item.price);
       const li = document.createElement("li");
       li.textContent = `${item.product} - R${item.price}`;
       cartList.appendChild(li);
     });
 
     document.getElementById("total").textContent = total;
-    cartDataInput.value = summary.join(", ");
   }
+
+  document.getElementById("order-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const address = document.getElementById("address").value;
+    const city = document.getElementById("city").value;
+    const zip = document.getElementById("zip").value;
+
+    const cartSummary = cart.map(item => `${item.product} - R${item.price}`).join(", ");
+    const total = cart.reduce((sum, item) => sum + item.price, 0);
+
+    const params = {
+      name: name,
+      address: `${address}, ${city}, ${zip}`,
+      cart: cartSummary,
+      total: `R${total}`
+    };
+
+    emailjs.send("service_ps73eee", "YOUR_TEMPLATE_ID", params)
+      .then(function () {
+        alert("Order submitted! Confirmation sent to thoentity@gmail.com");
+        cart = [];
+        updateCart();
+        document.getElementById("order-form").reset();
+      }, function (error) {
+        console.error("EmailJS error:", error);
+        alert("Failed to send order email.");
+      });
+  });
 </script>
 
 </body>
 </html>
+
+     
