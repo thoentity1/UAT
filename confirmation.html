@@ -1,20 +1,41 @@
-<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-<script>
-  (function() {
-    emailjs.init("R8YQ6uFuEg24lKXoj"); // Replace this
-  })();
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Payment Confirmation - Phantom studioZ</title>
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+</head>
+<body>
+  <h2>Thank you for your order!</h2>
+  <p>Your payment was successful. A confirmation email has been sent.</p>
 
-  function sendConfirmationEmail() {
-    const delivery = JSON.parse(localStorage.getItem("delivery") || "{}");
+  <script>
+    (function() {
+      emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
+    })();
 
-    const params = {
-      to_email: "thoentity@gmail.com",
-      customer_name: delivery.name || "Customer",
-      address: delivery.address || "No address found",
-      message: "A new order has been confirmed and paid."
-    };
+    function sendConfirmationEmail() {
+      const delivery = JSON.parse(localStorage.getItem("delivery") || "{}");
 
-  // Call this after Yoco payment success
-  sendConfirmationEmail();
-</script>
+      const params = {
+        to_email: "thoentity@gmail.com", // Your email
+        customer_name: delivery.name || "Customer",
+        address: delivery.address || "No address found",
+        message: "A new order has been confirmed and paid."
+      };
+
+      emailjs.send("service_ps73eee", "YOUR_TEMPLATE_ID", params)
+        .then(function(response) {
+          console.log("✅ Email sent!", response.status, response.text);
+        }, function(error) {
+          console.error("❌ Email failed:", error);
+        });
+    }
+
+    // Trigger email when the confirmation page loads
+    window.onload = sendConfirmationEmail;
+  </script>
+</body>
+</html>
+
 
