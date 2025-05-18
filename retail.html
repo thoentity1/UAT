@@ -163,6 +163,48 @@
       });
   });
 </script>
+  <script>
+  let cart = [];
+
+  function addToCart(product, price) {
+    cart.push({ product, price });
+    updateCart();
+  }
+
+  function updateCart() {
+    const cartList = document.getElementById("cart-items");
+    const cartDataInput = document.getElementById("cart-data");
+    const cartTotalInput = document.getElementById("cart-total");
+    cartList.innerHTML = "";
+    let total = 0;
+    let summary = [];
+
+    cart.forEach(item => {
+      total += item.price;
+      summary.push(item.product + " - R" + item.price);
+      const li = document.createElement("li");
+      li.textContent = `${item.product} - R${item.price}`;
+      cartList.appendChild(li);
+    });
+
+    document.getElementById("total").textContent = total;
+    cartDataInput.value = summary.join(", ");
+    cartTotalInput.value = total;
+  }
+
+  // Handle form submission with EmailJS
+  document.getElementById('order-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    emailjs.sendForm('service_ps73eee', 'template_xxxxxxx', this)
+      .then(function() {
+        alert('Order email sent successfully!');
+      }, function(error) {
+        alert('Failed to send order email: ' + JSON.stringify(error));
+      });
+  });
+</script>
+
 
 </body>
 </html>
