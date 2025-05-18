@@ -1,23 +1,18 @@
 <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 <script>
-  (function(){
-    emailjs.init("YOUR_USER_ID"); // replace with your EmailJS user ID
+  (function() {
+    emailjs.init("R8YQ6uFuEg24lKXoj"); // Replace this
   })();
 
   function sendConfirmationEmail() {
+    const delivery = JSON.parse(localStorage.getItem("delivery") || "{}");
+
     const params = {
       to_email: "thoentity@gmail.com",
-      customer_name: localStorage.getItem("delivery") ? JSON.parse(localStorage.getItem("delivery")).name : "Customer",
-      message: "A new order has been paid for via Yoco."
+      customer_name: delivery.name || "Customer",
+      address: delivery.address || "No address found",
+      message: "A new order has been confirmed and paid."
     };
-
-    emailjs.send("service_9iqp7ln", "template_44npsap", params)
-      .then(function(response) {
-        console.log("Email sent successfully!", response.status, response.text);
-      }, function(error) {
-        console.error("Email failed to send.", error);
-      });
-  }
 
   // Call this after Yoco payment success
   sendConfirmationEmail();
