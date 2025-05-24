@@ -82,7 +82,7 @@
 <div class="product-grid" id="product-list">
   <div class="product-card">
     <img src="images/shampoo.jpg" alt="Hair braiding and Styling Course, kit and Certificate">
-    <h3>Hair braiding and Styling Course, kit and Certicate</h3>
+    <h3>Hair braiding Styling Course, kit and Certicate</h3>
     <p>R850 | 1 Set</p>
     <button onclick="addToCart('Hair braiding Styling Course', 850)">Add to Cart</button>
   </div>
@@ -113,7 +113,7 @@
     <input type="text" name="city" placeholder="City" required>
     <input type="text" name="zip" placeholder="Postal Code" required>
     <input type="hidden" name="cart" id="cart-data">
-    <input type="hidden" name="total" id="cart-total">
+    <input type="hidden" name="total" id="cart total">
     <input type="submit" value="Submit Order">
   </form>
 </div>
@@ -155,7 +155,7 @@
         alert("Order placed successfully!");
         console.log("SUCCESS!", response.status, response.text);
       }, function(error) {
-        alert("Failed to send order. Check console.");
+        alert("Failed to send order. Check details and resend.");
         console.error("FAILED...", error);
       });
   });
