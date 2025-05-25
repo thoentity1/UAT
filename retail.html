@@ -119,15 +119,7 @@
 </form>
 </div>
 
-
-
-    // Also clear hidden inputs manually
-    document.getElementById("cart-data").value = "";
-    document.getElementById("cart-total").value = "";
-
-    alert("Cart and form have been reset.");
-  }
- <script>
+<script>
   let cart = [];
 
   function addToCart(product, price) {
@@ -147,34 +139,13 @@
       total += item.price;
       summary.push(item.product + " - R" + item.price);
       const li = document.createElement("li");
-      li.textContent = `${item.product} - R${item.price}`;
+      li.textContent = ${item.product} - R${item.price};
       cartList.appendChild(li);
     });
 
     document.getElementById("total").textContent = total;
     cartDataInput.value = summary.join(", ");
     cartTotalInput.value = total;
-  }
-
-  function resetCart() {
-    cart = []; // Clear cart
-    updateCart(); // Refresh cart display
-
-    // Reset form fields
-    const form = document.getElementById("order-form");
-    if (form) {
-      form.reset();
-    }
-
-    // Manually reset displayed total and hidden fields
-    document.getElementById("total").textContent = "0";
-    document.getElementById("cart-data").value = "";
-    document.getElementById("cart-total").value = "";
-
-    // Clear cart list display
-    document.getElementById("cart-items").innerHTML = "";
-
-    alert("Cart and form have been reset.");
   }
 
   document.getElementById("order-form").addEventListener("submit", function(event) {
@@ -184,7 +155,6 @@
       .then(function(response) {
         alert("Order placed successfully!");
         console.log("SUCCESS!", response.status, response.text);
-        resetCart(); // Optional: clear cart after successful order
       }, function(error) {
         alert("Failed to send order. Check details and resend.");
         console.error("FAILED...", error);
@@ -194,8 +164,6 @@
 
 </body>
 </html>
-
-
 
 
 
