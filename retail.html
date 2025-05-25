@@ -119,22 +119,7 @@
 </form>
 </div>
 
-<script>
-  let cart = [];
 
-  function addToCart(product, price) {
-    cart.push({ product, price });
-    updateCart();
-  }
-<script>
-  // existing functions...
-
-  function resetCart() {
-    cart = []; // Empty the cart
-    updateCart(); // Refresh cart display
-
-    // Clear the form
-    document.getElementById("order-form").reset();
 
     // Also clear hidden inputs manually
     document.getElementById("cart-data").value = "";
@@ -142,8 +127,15 @@
 
     alert("Cart and form have been reset.");
   }
-  </script>
- function updateCart() {
+ <script>
+  let cart = [];
+
+  function addToCart(product, price) {
+    cart.push({ product, price });
+    updateCart();
+  }
+
+  function updateCart() {
     const cartList = document.getElementById("cart-items");
     const cartDataInput = document.getElementById("cart-data");
     const cartTotalInput = document.getElementById("cart-total");
@@ -164,6 +156,27 @@
     cartTotalInput.value = total;
   }
 
+  function resetCart() {
+    cart = []; // Clear cart
+    updateCart(); // Refresh cart display
+
+    // Reset form fields
+    const form = document.getElementById("order-form");
+    if (form) {
+      form.reset();
+    }
+
+    // Manually reset displayed total and hidden fields
+    document.getElementById("total").textContent = "0";
+    document.getElementById("cart-data").value = "";
+    document.getElementById("cart-total").value = "";
+
+    // Clear cart list display
+    document.getElementById("cart-items").innerHTML = "";
+
+    alert("Cart and form have been reset.");
+  }
+
   document.getElementById("order-form").addEventListener("submit", function(event) {
     event.preventDefault();
 
@@ -171,6 +184,7 @@
       .then(function(response) {
         alert("Order placed successfully!");
         console.log("SUCCESS!", response.status, response.text);
+        resetCart(); // Optional: clear cart after successful order
       }, function(error) {
         alert("Failed to send order. Check details and resend.");
         console.error("FAILED...", error);
