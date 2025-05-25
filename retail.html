@@ -185,8 +185,8 @@
   <ul id="cart-items"></ul>
 
   <label>Delivery Option</label>
-  <select id="delivery" onchange="updateCart()">
-    <option value="0|Pick-up (Free)">Pick-up (Free)</option>
+  <select id="delivery" name="delivery_details" onchange="updateCart()">
+      <option value="0|Pick-up (Free)">Pick-up (Free)</option>
     <option value="50|Standard Delivery">Standard Delivery (Pingo Box Collection) - R50</option>
     <option value="100|Express Delivery">Delivery to address - R150</option>
   </select>
@@ -229,14 +229,18 @@
   }
 
   function updateCart() {
-    const cartList = document.getElementById("cart-items");
-    const cartDataInput = document.getElementById("cart-data");
-    const cartTotalInput = document.getElementById("cart-total");
-    const deliveryInput = document.getElementById("delivery-details");
+  const cartSelect = document.getElementById("cart");
+  const deliverySelect = document.getElementById("delivery");
 
-    const [fee, label] = document.getElementById("delivery").value.split("|");
-    const deliveryFee = parseFloat(fee);
+  const [itemPrice, itemName] = cartSelect.value.split("|");
+  const [deliveryPrice, deliveryLabel] = deliverySelect.value.split("|");
 
+  const total = parseInt(itemPrice) + parseInt(deliveryPrice);
+
+  document.getElementById("total").textContent = total;
+  document.getElementById("totalInput").value = total;
+  document.getElementById("deliveryLabel").value = deliveryLabel;
+}
     cartList.innerHTML = "";
     let total = 0;
     let summary = [];
