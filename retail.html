@@ -2,210 +2,78 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Phantom studioZ Retail</title>
-  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-  <script>
-    (function () {
-      emailjs.init("R8YQ6uFuEg24lKXoj"); // Replace with your EmailJS public key
-    })();
-  </script>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f9f9f9;
-      margin: 0;
-      padding: 0;
-      color: #333;
-    }
-    header {
-      background: #2c2c2c;
-      color: white;
-      text-align: center;
-      padding: 20px;
-    }
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 20px;
-    }
-    .product-card {
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      padding: 15px;
-    }
-    .product-card img {
-      width: 100%;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 5px;
-    }
-    .product-card h3 {
-      margin: 10px 0 5px;
-    }
-    .product-card button {
-      background: #2c2c2c;
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    #cart {
-      background: #eee;
-      padding: 20px;
-    }
-    .cart-item {
-      display: flex;
-      justify-content: space-between;
-    }
-    .cart-item button {
-      background: red;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      padding: 4px 8px;
-      cursor: pointer;
-    }
-    form input, form select {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-    }
-    form input[type="submit"] {
-      background: #2c2c2c;
-      color: white;
-      cursor: pointer;
-    }
-  </style>
+  <title>Phantom studioZ - Retail</title>
 </head>
 <body>
-
-<header>
-  <h1>Phantom studioZ Retail</h1>
-  <p>Explore and order our premium beauty products and courses</p>
-</header>
-
-<div class="product-grid" id="product-list">
-  <div class="product-card">
-    <img src="images/shampoo.jpg" alt="Hair Braiding Styling Course" />
-    <h3>Hair Braiding Styling Course</h3>
-    <p>R850</p>
-    <button onclick="addToCart('Hair Braiding Styling Course', 850)">Add to Cart</button>
-  </div>
-  <div class="product-card">
-    <img src="images/nailkit.jpg" alt="Make Up Artistry Course" />
-    <h3>Make Up Artistry Course</h3>
-    <p>R1200</p>
-    <button onclick="addToCart('Make Up Artistry Course', 1200)">Add to Cart</button>
-  </div>
-</div>
-  <div class="product-card">
-    <img src="images/nailkit.jpg" alt="Nail Technology Course" />
-    <h3>Make Up Artistry Course</h3>
-    <p>R1500</p>
-    <button onclick="addToCart('Make Up Artistry Course', 1200)">Add to Cart</button>
-  </div>
-
-<div id="cart">
-  <h2>Your Cart</h2>
-  <ul id="cart-items"></ul>
-
-  <label>Delivery Option</label>
-  <select id="delivery" onchange="updateCart()">
-    <option value="0|Pick-up (Free)">Pick-up (Free)</option>
-    <option value="50|Standard Delivery">Standard Delivery (Pingo box collection) - R50</option>
-    <option value="100|Express Delivery">Express Delivery (Delivery address) - R150</option>
-  </select>
-
-  <p><strong>Total:</strong> R<span id="total">0</span></p>
-
+  <h2>🛍️ Order Now</h2>
   <form id="order-form">
-    <input type="text" name="name" placeholder="Full Name" required />
-    <input type="text" name="email" placeholder="Your Email" required />
-    <input type="text" name="address" placeholder="Street Address" required />
-    <input type="text" name="city" placeholder="City" required />
-    <input type="text" name="zip" placeholder="Postal Code" required />
+    <label>Full Name</label>
+    <input type="text" name="name" required><br>
 
-    <input type="hidden" name="cart" id="cart-data" />
-    <input type="hidden" name="total" id="cart-total" />
-    <input type="hidden" name="delivery_details" id="delivery-details" />
+    <label>Email</label>
+    <input type="email" name="email" required><br>
 
-    <input type="submit" value="Submit Order" />
-    <input type="button" value="Reset Cart" onclick="resetCart()" />
+    <label>Street Address</label>
+    <input type="text" name="address" required><br>
+
+    <label>City</label>
+    <input type="text" name="city" required><br>
+
+    <label>Postal Code</label>
+    <input type="text" name="zip" required><br>
+
+    <label>Selected Item</label>
+    <select id="cart" name="cart" onchange="updateCart()">
+      <option value="850|Hair Braiding Styling Course">Hair Braiding Styling Course - R850</option>
+      <option value="950|Acrylic Nail Training Kit">Acrylic Nail Training Kit - R950</option>
+    </select><br>
+
+    <label>Delivery Option</label>
+    <select id="delivery" name="delivery_details" onchange="updateCart()">
+      <option value="0|Pick-up (Free)">Pick-up (Free)</option>
+      <option value="50|Standard Delivery">Standard Delivery (Pingo box collection) - R50</option>
+      <option value="150|Express Delivery">Express Delivery (Delivery address) - R150</option>
+    </select><br><br>
+
+    <strong>Total: R<span id="total">850</span></strong>
+    <input type="hidden" name="total" id="totalInput"><br><br>
+
+    <button type="submit">Submit Order</button>
   </form>
-</div>
 
-<script>
-  let cart = [];
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    emailjs.init("YOUR_USER_ID"); // Replace with your EmailJS User ID
 
-  function addToCart(product, price) {
-    cart.push({ product, price });
-    updateCart();
-  }
+    function updateCart() {
+      const cartSelect = document.getElementById("cart");
+      const deliverySelect = document.getElementById("delivery");
 
-  function removeFromCart(index) {
-    cart.splice(index, 1);
-    updateCart();
-  }
+      const [itemPrice, itemName] = cartSelect.value.split("|");
+      const [deliveryPrice, deliveryMethod] = deliverySelect.value.split("|");
 
-  function resetCart() {
-    cart = [];
-    document.getElementById("delivery").value = "0|Pick-up (Free)";
-    updateCart();
-  }
+      const total = parseInt(itemPrice) + parseInt(deliveryPrice);
 
-  function updateCart() {
-    const cartList = document.getElementById("cart-items");
-    const cartDataInput = document.getElementById("cart-data");
-    const cartTotalInput = document.getElementById("cart-total");
-    const deliveryInput = document.getElementById("delivery-details");
+      document.getElementById("total").textContent = total;
+      document.getElementById("totalInput").value = total;
+    }
 
-    const [fee, label] = document.getElementById("delivery").value.split("|");
-    const deliveryFee = parseFloat(fee);
+    document.getElementById("order-form").addEventListener("submit", function(e) {
+      e.preventDefault();
 
-    cartList.innerHTML = "";
-    let total = 0;
-    let summary = [];
-
-    cart.forEach((item, index) => {
-      total += item.price;
-      summary.push(`${item.product} - R${item.price}`);
-      const li = document.createElement("li");
-      li.className = "cart-item";
-      li.innerHTML = `${item.product} - R${item.price} <button onclick="removeFromCart(${index})">X</button>`;
-      cartList.appendChild(li);
+      emailjs.sendForm("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", this)
+        .then(() => {
+          alert("Order submitted! Confirmation sent via email.");
+          this.reset();
+          document.getElementById("total").textContent = "0";
+        }, (error) => {
+          alert("Failed to send email: " + error.text);
+        });
     });
-
-    total += deliveryFee;
-    document.getElementById("total").textContent = total;
-    cartDataInput.value = summary.join(", ");
-    cartTotalInput.value = total;
-    deliveryInput.value = `${label} - R${deliveryFee}`;
-  }
-
-  document.getElementById("order-form").addEventListener("submit", function (e) {
-    e.preventDefault();
-    emailjs.sendForm("service_ps73eee", "template_xkluzkn", this).then(
-      function () {
-        alert("Order sent! Confirmation email will be sent shortly.");
-        resetCart();
-        document.getElementById("order-form").reset();
-      },
-      function (error) {
-        alert("Failed to send order. Try again.");
-        console.error("EmailJS error:", error);
-      }
-    );
-  });
-
-  updateCart(); // Initialize cart on load
-</script>
-
+  </script>
 </body>
 </html>
+
 
 
 
