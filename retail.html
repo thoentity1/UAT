@@ -6,7 +6,7 @@
   <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
   <script>
     (function () {
-      emailjs.init("R8YQ6uFuEg24lKXoj"); // Replace with your EmailJS public key
+      emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
     })();
   </script>
   <style>
@@ -84,89 +84,12 @@
 <body>
 
 <header>
-  <h1>Phantom studioZ Academy and Retail</h1>
+  <h1>Phantom studioZ Retail</h1>
   <p>Explore and order our premium beauty products and courses</p>
 </header>
 
 <div class="product-grid" id="product-list">
   <div class="product-card">
-    <img src="images/shampoo.jpg" alt="Hair Braiding Styling Course" />
-    <h3>Hair Braiding Styling Course</h3>
-    <p>R850</p>
-    <button onclick="addToCart('Hair Braiding Styling Course', 850)">Add to Cart</button>
-  </div>
-  <div class="product-card">
-    <img src="images/nailkit.jpg" alt="Make Up Artistry Course" />
-    <h3>Make Up Artistry Course</h3>
-    <p>R1200</p>
-    <button onclick="addToCart('Make Up Artistry Course', 1200)">Add to Cart</button>
-  </div>
- <div class="product-card">
-    <img src="images/shampoo.jpg" alt="Hair Braiding Styling Course" />
-    <h3>Hair Braiding Styling Course</h3>
-    <p>R850</p>
-    <button onclick="addToCart('Hair Braiding Styling Course', 850)">Add to Cart</button>
-  </div>
-  <div class="product-card">
-    <img src="images/nailkit.jpg" alt="Make Up Artistry Course" />
-    <h3>Make Up Artistry Course</h3>
-    <p>R1200</p>
-    <button onclick="addToCart('Make Up Artistry Course', 1200)">Add to Cart</button>
-  </div>
-   <div class="product-card">
-    <img src="images/shampoo.jpg" alt="Hair Braiding Styling Course" />
-    <h3>Hair Braiding Styling Course</h3>
-    <p>R850</p>
-    <button onclick="addToCart('Hair Braiding Styling Course', 850)">Add to Cart</button>
-  </div>
-   <div class="product-card">
-    <img src="images/shampoo.jpg" alt="Hair Braiding Styling Course" />
-    <h3>Hair Braiding Styling Course</h3>
-    <p>R850</p>
-    <button onclick="addToCart('Hair Braiding Styling Course', 850)">Add to Cart</button>
-  </div>
-  <div class="product-card">
-    <img src="images/shampoo.jpg" alt="Hair Braiding Styling Course" />
-    <h3>Hair Braiding Styling Course</h3>
-    <p>R850</p>
-    <button onclick="addToCart('Hair Braiding Styling Course', 850)">Add to Cart</button>
-  </div>
-  <div class="product-card">
-    <img src="images/nailkit.jpg" alt="Make Up Artistry Course" />
-    <h3>Make Up Artistry Course</h3>
-    <p>R1200</p>
-    <button onclick="addToCart('Make Up Artistry Course', 1200)">Add to Cart</button>
-  </div>
-   <div class="product-card">
-    <img src="images/shampoo.jpg" alt="Hair Braiding Styling Course" />
-    <h3>Hair Braiding Styling Course</h3>
-    <p>R850</p>
-    <button onclick="addToCart('Hair Braiding Styling Course', 850)">Add to Cart</button>
-  </div>
-  <div class="product-card">
-    <img src="images/nailkit.jpg" alt="Make Up Artistry Course" />
-    <h3>Make Up Artistry Course</h3>
-    <p>R1200</p>
-    <button onclick="addToCart('Make Up Artistry Course', 1200)">Add to Cart</button>
-  </div>
-   <div class="product-card">
-    <img src="images/shampoo.jpg" alt="Hair Braiding Styling Course" />
-    <h3>Hair Braiding Styling Course</h3>
-    <p>R850</p>
-    <button onclick="addToCart('Hair Braiding Styling Course', 850)">Add to Cart</button>
-  </div>
-  <div class="product-card">
-    <img src="images/nailkit.jpg" alt="Make Up Artistry Course" />
-    <h3>Make Up Artistry Course</h3>
-    <p>R1200</p>
-    <button onclick="addToCart('Make Up Artistry Course', 1200)">Add to Cart</button>
-  </div>
-  <div class="product-card">
-    <img src="images/nailkit.jpg" alt="Make Up Artistry Course" />
-    <h3>Make Up Artistry Course</h3>
-    <p>R1200</p>
-    <button onclick="addToCart('Make Up Artistry Course', 1200)">Add to Cart</button>
-  </div> <div class="product-card">
     <img src="images/shampoo.jpg" alt="Hair Braiding Styling Course" />
     <h3>Hair Braiding Styling Course</h3>
     <p>R850</p>
@@ -185,10 +108,10 @@
   <ul id="cart-items"></ul>
 
   <label>Delivery Option</label>
-  <select id="delivery" name="delivery_details" onchange="updateCart()">
-      <option value="0|Pick-up (Free)">Pick-up (Free)</option>
-    <option value="50|Standard Delivery">Standard Delivery (Pingo Box Collection) - R50</option>
-    <option value="100|Express Delivery">Delivery to address - R150</option>
+  <select id="delivery" onchange="updateCart()">
+    <option value="0|Pick-up (Free)">Pick-up (Free)</option>
+    <option value="50|Standard Delivery">Standard Delivery - R50</option>
+    <option value="100|Express Delivery">Express Delivery - R100</option>
   </select>
 
   <p><strong>Total:</strong> R<span id="total">0</span></p>
@@ -229,18 +152,14 @@
   }
 
   function updateCart() {
-  const cartSelect = document.getElementById("cart");
-  const deliverySelect = document.getElementById("delivery");
+    const cartList = document.getElementById("cart-items");
+    const cartDataInput = document.getElementById("cart-data");
+    const cartTotalInput = document.getElementById("cart-total");
+    const deliveryInput = document.getElementById("delivery-details");
 
-  const [itemPrice, itemName] = cartSelect.value.split("|");
-  const [deliveryPrice, deliveryLabel] = deliverySelect.value.split("|");
+    const [fee, label] = document.getElementById("delivery").value.split("|");
+    const deliveryFee = parseFloat(fee);
 
-  const total = parseInt(itemPrice) + parseInt(deliveryPrice);
-
-  document.getElementById("total").textContent = total;
-  document.getElementById("totalInput").value = total;
-  document.getElementById("deliveryLabel").value = deliveryLabel;
-}
     cartList.innerHTML = "";
     let total = 0;
     let summary = [];
@@ -263,7 +182,7 @@
 
   document.getElementById("order-form").addEventListener("submit", function (e) {
     e.preventDefault();
-    emailjs.sendForm("service_ps73eee", "template_xkluzkn", this).then(
+    emailjs.sendForm("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", this).then(
       function () {
         alert("Order sent! Confirmation email will be sent shortly.");
         resetCart();
@@ -281,6 +200,7 @@
 
 </body>
 </html>
+
 
 
 
