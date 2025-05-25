@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Phantom studioZ Retail</title>
   <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
   <script>
     (function() {
-      emailjs.init("R8YQ6uFuEg24lKXoj"); // Replace with your EmailJS Public Key
+      emailjs.init("R8YQ6uFuEg24lKXoj");
     })();
   </script>
   <style>
@@ -42,13 +42,6 @@
       object-fit: cover;
       border-radius: 5px;
     }
-    .product-card h3 {
-      margin: 10px 0 5px;
-    }
-    .product-card p {
-      font-size: 14px;
-      color: #555;
-    }
     .product-card button {
       margin-top: 10px;
       padding: 10px 15px;
@@ -62,22 +55,24 @@
       padding: 20px;
       background-color: #eee;
     }
-    form {
-      margin-top: 20px;
+    ul#cart-items li {
+      margin: 5px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .remove-btn {
+      background-color: red;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 3px;
+      cursor: pointer;
     }
     input[type="text"], input[type="submit"], input[type="button"] {
       padding: 10px;
       margin: 5px 0;
       width: 100%;
-    }
-    #cart-items button {
-      background-color: red;
-      color: white;
-      border: none;
-      margin-left: 10px;
-      padding: 5px 10px;
-      border-radius: 5px;
-      cursor: pointer;
     }
   </style>
 </head>
@@ -88,24 +83,24 @@
   <p>Explore and order our premium beauty products and Courses</p>
 </header>
 
-<div class="product-grid" id="product-list">
+<div class="product-grid">
   <div class="product-card">
-    <img src="images/shampoo.jpg" alt="Hair braiding Styling Course, kit and Certificate">
-    <h3>Hair braiding Styling Course, kit and Certificate</h3>
+    <img src="images/shampoo.jpg" alt="Hair Braiding Course">
+    <h3>Hair Braiding Styling Course</h3>
     <p>R850 | 1 Set</p>
-    <button onclick="addToCart('Hair braiding Styling Course', 850)">Add to Cart</button>
+    <button onclick="addToCart('Hair Braiding Styling Course', 850)">Add to Cart</button>
   </div>
   <div class="product-card">
-    <img src="images/nailkit.jpg" alt="Make up Artistry Course, kit and Certificate">
-    <h3>Make up Artistry Course</h3>
+    <img src="images/nailkit.jpg" alt="Make Up Course">
+    <h3>Make Up Artistry Course</h3>
     <p>R1200 | 1 Set</p>
     <button onclick="addToCart('Make Up Artistry Course', 1200)">Add to Cart</button>
   </div>
   <div class="product-card">
-    <img src="images/nailkit.jpg" alt="Nail Technology Course, kit, lamp and Certificate">
+    <img src="images/nailkit.jpg" alt="Nail Technology Course">
     <h3>Nail Technology Course</h3>
     <p>R1500 | 1 Set</p>
-    <button onclick="addToCart('Nail Technology Course, Kit and lamp', 1500)">Add to Cart</button>
+    <button onclick="addToCart('Nail Technology Course', 1500)">Add to Cart</button>
   </div>
 </div>
 
@@ -115,15 +110,19 @@
   <p><strong>Total:</strong> R<span id="total">0</span></p>
 
   <form id="order-form">
-    <input type="hidden" name="to_email" value="thoentity@gmail.com">
     <h3>Delivery Address</h3>
     <input type="text" name="name" placeholder="Full Name" required>
     <input type="text" name="email" placeholder="Email" required>
     <input type="text" name="address" placeholder="Street Address" required>
     <input type="text" name="city" placeholder="City" required>
     <input type="text" name="zip" placeholder="Postal Code" required>
+
+    <!-- Hidden fields for email content -->
     <input type="hidden" name="cart" id="cart-data">
     <input type="hidden" name="total" id="cart-total">
+    <input type="hidden" name="payment_link" value="https://pay.yoco.com/phantom-studioz-order">
+    <input type="hidden" name="to_email" value="thoentity@gmail.com">
+
     <input type="submit" value="Submit Order">
     <input type="button" value="Reset Cart" onclick="resetCart()">
   </form>
@@ -134,6 +133,16 @@
 
   function addToCart(product, price) {
     cart.push({ product, price });
+    updateCart();
+  }
+
+  function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCart();
+  }
+
+  function resetCart() {
+    cart = [];
     updateCart();
   }
 
@@ -148,12 +157,8 @@
     cart.forEach((item, index) => {
       total += item.price;
       summary.push(item.product + " - R" + item.price);
-
       const li = document.createElement("li");
-      li.innerHTML = `
-        ${item.product} - R${item.price}
-        <button onclick="removeFromCart(${index})">Delete</button>
-      `;
+      li.innerHTML = `${item.product} - R${item.price} <button class="remove-btn" onclick="removeFromCart(${index})">Delete</button>`;
       cartList.appendChild(li);
     });
 
@@ -162,29 +167,16 @@
     cartTotalInput.value = total;
   }
 
-  function removeFromCart(index) {
-    cart.splice(index, 1);
-    updateCart();
-  }
-
-  function resetCart() {
-    cart = [];
-    updateCart();
-    document.getElementById("order-form").reset();
-    alert("Cart and form reset.");
-  }
-
   document.getElementById("order-form").addEventListener("submit", function(event) {
     event.preventDefault();
 
     emailjs.sendForm('service_ps73eee', 'template_xkluzkn', this)
       .then(function(response) {
-        alert("Order placed successfully!");
-        console.log("SUCCESS!", response.status, response.text);
-        resetCart();
+        alert("Order placed successfully! Please complete payment via the Yoco link in your email.");
+        resetCart(); // Optionally clear cart on success
       }, function(error) {
-        alert("Failed to send order. Check details and try again.");
-        console.error("FAILED...", error);
+        alert("Order failed. Please try again.");
+        console.error("EmailJS error:", error);
       });
   });
 </script>
