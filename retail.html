@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -132,47 +132,20 @@
     const cartDataInput = document.getElementById("cart-data");
     const cartTotalInput = document.getElementById("cart-total");
     cartList.innerHTML = "";
-
     let total = 0;
     let summary = [];
 
-    cart.forEach((item, index) => {
+    cart.forEach(item => {
       total += item.price;
       summary.push(item.product + " - R" + item.price);
-
       const li = document.createElement("li");
-      li.innerHTML = `
-        ${item.product} - R${item.price}
-        <button onclick="removeFromCart(${index})" style="margin-left:10px; color:white; background:red; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;">Delete</button>
-      `;
+      li.textContent = ${item.product} - R${item.price};
       cartList.appendChild(li);
     });
 
     document.getElementById("total").textContent = total;
     cartDataInput.value = summary.join(", ");
     cartTotalInput.value = total;
-  }
-
-  function removeFromCart(index) {
-    cart.splice(index, 1); // Remove item at index
-    updateCart(); // Refresh cart
-  }
-
-  function resetCart() {
-    cart = [];
-    updateCart();
-
-    const form = document.getElementById("order-form");
-    if (form) {
-      form.reset();
-    }
-
-    document.getElementById("total").textContent = "0";
-    document.getElementById("cart-data").value = "";
-    document.getElementById("cart-total").value = "";
-    document.getElementById("cart-items").innerHTML = "";
-
-    alert("Cart and form have been reset.");
   }
 
   document.getElementById("order-form").addEventListener("submit", function(event) {
@@ -182,7 +155,6 @@
       .then(function(response) {
         alert("Order placed successfully!");
         console.log("SUCCESS!", response.status, response.text);
-        resetCart(); // Clear cart after successful order
       }, function(error) {
         alert("Failed to send order. Check details and resend.");
         console.error("FAILED...", error);
