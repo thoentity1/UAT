@@ -1,226 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Phantom studioZ Retail</title>
-  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-  <script>
-    (function () {
-      emailjs.init("R8YQ6uFuEg24lKXoj");
-    })();
-  </script>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f9f9f9;
-      color: #333;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background-color: #2c2c2c;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 20px;
-    }
-    .product-card {
-      background-color: white;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      padding: 15px;
-      text-align: center;
-    }
-    .product-card img {
-      max-width: 100%;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 5px;
-    }
-    .product-card h3 {
-      margin: 10px 0 5px;
-    }
-    .product-card p {
-      font-size: 14px;
-      color: #555;
-    }
-    .product-card button {
-      margin-top: 10px;
-      padding: 10px 15px;
-      background-color: #2c2c2c;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    #cart {
-      padding: 20px;
-      background-color: #eee;
-    }
-    form {
-      margin-top: 20px;
-    }
-    input[type="text"], input[type="submit"], select {
-      padding: 10px;
-      margin: 5px 0;
-      width: 100%;
-    }
-    .cart-item {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 5px;
-    }
-    .cart-item button {
-      background-color: red;
-      border: none;
-      color: white;
-      border-radius: 4px;
-      cursor: pointer;
-      padding: 5px;
-    }
-  </style>
-</head>
-<body>
+<!-- Order Form -->
+<form id="order-form">
+  <h3>Delivery Address</h3>
 
-<header>
-  <h1>Phantom studioZ Retail</h1>
-  <p>Explore and order our premium beauty products and Courses</p>
-</header>
+  <label for="name">Full Name</label>
+  <input type="text" id="name" name="name" placeholder="Full Name" required />
 
-<div class="product-grid" id="product-list">
-  <div class="product-card">
-    <img src="images/shampoo.jpg" alt="Hair Braiding Styling Course" />
-    <h3>Hair Braiding Styling Course</h3>
-    <p>R850</p>
-    <button onclick="addToCart('Hair Braiding Styling Course', 850)">Add to Cart</button>
-  </div>
-  <div class="product-card">
-    <img src="images/nailkit.jpg" alt="Make Up Artistry Course" />
-    <h3>Make Up Artistry Course</h3>
-    <p>R1200</p>
-    <button onclick="addToCart('Make Up Artistry Course', 1200)">Add to Cart</button>
-  </div>
-  <div class="product-card">
-    <img src="images/nailkit.jpg" alt="Nail Technology Course" />
-    <h3>Nail Technology Course</h3>
-    <p>R1500</p>
-    <button onclick="addToCart('Nail Technology Course', 1500)">Add to Cart</button>
-  </div>
-</div>
+  <label for="email">Email</label>
+  <input type="email" id="email" name="email" placeholder="Your Email" required />
 
-<div id="cart">
-  <h2>Your Cart</h2>
-  <ul id="cart-items"></ul>
+  <label for="address">Street Address</label>
+  <input type="text" id="address" name="address" placeholder="Street Address" required />
 
-  <label for="delivery">Choose Delivery Option:</label>
-  <select id="delivery" onchange="updateCart()">
-    <option value="0|Pick-up (Free)">Pick-up (Free)</option>
-    <option value="50|Standard Delivery">Standard Delivery - R50</option>
-    <option value="100|Express Delivery">Express Delivery - R100</option>
-  </select>
+  <label for="city">City</label>
+  <input type="text" id="city" name="city" placeholder="City" required />
 
-  <p><strong>Total:</strong> R<span id="total">0</span></p>
+  <label for="zip">Postal Code</label>
+  <input type="text" id="zip" name="zip" placeholder="Postal Code" required />
 
-  <form id="order-form">
-    <input type="hidden" name="to_email" value="thoentity@gmail.com" />
-    <input type="hidden" name="yoco_link" value="https://pay.yoco.com/phantomstudioz" />
+  <input type="hidden" name="cart" id="cart-data" />
+  <input type="hidden" name="total" id="cart-total" />
+  <input type="hidden" name="delivery_details" id="delivery-details" />
 
-    <h3>Delivery Address</h3>
-    <input type="text" name="name" placeholder="Full Name" required />
-    <input type="text" name="email" placeholder="Your Email" required />
-    <input type="text" name="address" placeholder="Street Address" required />
-    <input type="text" name="city" placeholder="City" required />
-    <input type="text" name="zip" placeholder="Postal Code" required />
+  <button type="submit">Submit Order</button>
+</form>
 
-    <input type="hidden" name="cart" id="cart-data" />
-    <input type="hidden" name="total" id="cart-total" />
-    <input type="hidden" name="delivery_details" id="delivery-details" />
-
-    <input type="submit" value="Submit Order" />
-    <input type="button" value="Reset Cart" onclick="resetCart()" />
-  </form>
-</div>
-
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 <script>
-  let cart = [];
+  emailjs.init("YOUR_USER_ID"); // Replace with your actual public EmailJS key
 
-  function addToCart(product, price) {
-    cart.push({ product, price });
-    updateCart();
-  }
+  document.getElementById("order-form").addEventListener("submit", function (e) {
+    e.preventDefault();
 
-  function removeFromCart(index) {
-    cart.splice(index, 1);
-    updateCart();
-  }
-
-  function resetCart() {
-    cart = [];
-    document.getElementById("delivery").value = "0|Pick-up (Free)";
-    document.getElementById("order-form").reset();
-    updateCart();
-  }
-
-  function updateCart() {
-    const cartList = document.getElementById("cart-items");
-    const cartDataInput = document.getElementById("cart-data");
-    const cartTotalInput = document.getElementById("cart-total");
-    const deliveryInput = document.getElementById("delivery-details");
-
-    const [fee, label] = document.getElementById("delivery").value.split("|");
-    const deliveryFee = parseFloat(fee);
-
-    cartList.innerHTML = "";
-    let total = 0;
-    let summary = [];
-
-    cart.forEach((item, index) => {
-      total += item.price;
-      summary.push(`${item.product} - R${item.price}`);
-      const li = document.createElement("li");
-      li.className = "cart-item";
-      li.innerHTML = `${item.product} - R${item.price} <button onclick="removeFromCart(${index})">X</button>`;
-      cartList.appendChild(li);
-    });
-
-    total += deliveryFee;
-    document.getElementById("total").textContent = total;
-    cartDataInput.value = summary.join(", ");
-    cartTotalInput.value = total;
-    deliveryInput.value = `${label} - R${deliveryFee}`;
-  }
-
-  document.getElementById("order-form").addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    if (cart.length === 0) {
-      alert("Your cart is empty! Please add at least one item.");
-      return;
-    }
-
-    emailjs.sendForm('service_ps73eee', 'template_xkluzkn', this)
-      .then(function (response) {
-        alert("Order sent! Now redirecting to payment...");
-        resetCart(); // Clear cart and form
-        window.location.href = "https://pay.yoco.com/phantomstudioz";
-      }, function (error) {
-        alert("Failed to send order. Try again.");
-        console.error("FAILED...", error);
-      });
+    emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this).then(
+      function () {
+        alert("✅ Order confirmation email sent! We'll contact you soon.");
+        document.getElementById("order-form").reset();
+        // Optional: reset cart UI here
+      },
+      function (error) {
+        alert("❌ Failed to send email. Please try again.");
+        console.error("EmailJS Error:", error);
+      }
+    );
   });
-
-  // Initialize on page load
-  updateCart();
 </script>
-
-</body>
-</html>
 
 
 
