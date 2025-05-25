@@ -6,7 +6,7 @@
   <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
   <script>
     (function() {
-      emailjs.init("R8YQ6uFuEg24lKXoj"); // Your EmailJS public key
+      emailjs.init("R8YQ6uFuEg24lKXoj"); // Replace with your EmailJS Public Key
     })();
   </script>
   <style>
@@ -102,7 +102,95 @@
     <button onclick="addToCart('Make Up Artistry Course', 1200)">Add to Cart</button>
   </div>
   <div class="product-card">
-    <img src="images/nailkit.jpg" alt="Nail Technology Course, kit
+    <img src="images/nailkit.jpg" alt="Nail Technology Course, kit, lamp and Certificate">
+    <h3>Nail Technology Course</h3>
+    <p>R1500 | 1 Set</p>
+    <button onclick="addToCart('Nail Technology Course, Kit and lamp', 1500)">Add to Cart</button>
+  </div>
+</div>
+
+<div id="cart">
+  <h2>Your Cart</h2>
+  <ul id="cart-items"></ul>
+  <p><strong>Total:</strong> R<span id="total">0</span></p>
+
+  <form id="order-form">
+    <input type="hidden" name="to_email" value="thoentity@gmail.com">
+    <h3>Delivery Address</h3>
+    <input type="text" name="name" placeholder="Full Name" required>
+    <input type="text" name="email" placeholder="Email" required>
+    <input type="text" name="address" placeholder="Street Address" required>
+    <input type="text" name="city" placeholder="City" required>
+    <input type="text" name="zip" placeholder="Postal Code" required>
+    <input type="hidden" name="cart" id="cart-data">
+    <input type="hidden" name="total" id="cart-total">
+    <input type="submit" value="Submit Order">
+    <input type="button" value="Reset Cart" onclick="resetCart()">
+  </form>
+</div>
+
+<script>
+  let cart = [];
+
+  function addToCart(product, price) {
+    cart.push({ product, price });
+    updateCart();
+  }
+
+  function updateCart() {
+    const cartList = document.getElementById("cart-items");
+    const cartDataInput = document.getElementById("cart-data");
+    const cartTotalInput = document.getElementById("cart-total");
+    cartList.innerHTML = "";
+    let total = 0;
+    let summary = [];
+
+    cart.forEach((item, index) => {
+      total += item.price;
+      summary.push(item.product + " - R" + item.price);
+
+      const li = document.createElement("li");
+      li.innerHTML = `
+        ${item.product} - R${item.price}
+        <button onclick="removeFromCart(${index})">Delete</button>
+      `;
+      cartList.appendChild(li);
+    });
+
+    document.getElementById("total").textContent = total;
+    cartDataInput.value = summary.join(", ");
+    cartTotalInput.value = total;
+  }
+
+  function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCart();
+  }
+
+  function resetCart() {
+    cart = [];
+    updateCart();
+    document.getElementById("order-form").reset();
+    alert("Cart and form reset.");
+  }
+
+  document.getElementById("order-form").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    emailjs.sendForm('service_ps73eee', 'template_xkluzkn', this)
+      .then(function(response) {
+        alert("Order placed successfully!");
+        console.log("SUCCESS!", response.status, response.text);
+        resetCart();
+      }, function(error) {
+        alert("Failed to send order. Check details and try again.");
+        console.error("FAILED...", error);
+      });
+  });
+</script>
+
+</body>
+</html>
 
 
 
