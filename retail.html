@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Phantom studioZ Retail</title>
   <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
   <script>
@@ -95,19 +95,19 @@
 
 <div class="product-grid" id="product-list">
   <div class="product-card">
-    <img src="images/shampoo.jpg" alt="Hair Braiding Styling Course" />
+    <img src="images/shampoo.jpg" alt="Hair Braiding Styling Course">
     <h3>Hair Braiding Styling Course</h3>
     <p>R850</p>
     <button onclick="addToCart('Hair Braiding Styling Course', 850)">Add to Cart</button>
   </div>
   <div class="product-card">
-    <img src="images/nailkit.jpg" alt="Make Up Artistry Course" />
+    <img src="images/nailkit.jpg" alt="Make Up Artistry Course">
     <h3>Make Up Artistry Course</h3>
     <p>R1200</p>
     <button onclick="addToCart('Make Up Artistry Course', 1200)">Add to Cart</button>
   </div>
   <div class="product-card">
-    <img src="images/nailkit.jpg" alt="Nail Technology Course" />
+    <img src="images/nailkit.jpg" alt="Nail Technology Course">
     <h3>Nail Technology Course</h3>
     <p>R1500</p>
     <button onclick="addToCart('Nail Technology Course', 1500)">Add to Cart</button>
@@ -128,10 +128,41 @@
   <p><strong>Total:</strong> R<span id="total">0</span></p>
 
   <form id="order-form">
-    <input type="hidden" name="to_email" value="thoentity@gmail.com" />
-    <input type="hidden" name="yoco_link" value="https://pay.yoco.com/phantomstudioz" />
+    <input type="hidden" name="to_email" value="thoentity@gmail.com">
+    <input type="hidden" name="yoco_link" value="https://pay.yoco.com/phantomstudioz">
+    
+    <h3>Delivery Address</h3>
+    <input type="text" name="name" placeholder="Full Name" required>
+    <input type="text" name="email" placeholder="Your Email" required>
+    <input type="text" name="address" placeholder="Street Address" required>
+    <input type="text" name="city" placeholder="City" required>
+    <input type="text" name="zip" placeholder="Postal Code" required>
 
-    <h
+    <input type="hidden" name="cart" id="cart-data">
+    <input type="hidden" name="total" id="cart-total">
+    <input type="hidden" name="delivery_details" id="delivery-details">
+
+    <input type="submit" value="Submit Order">
+    <input type="button" value="Reset Cart" onclick="resetCart()">
+  </form>
+</div>
+
+<script>
+  let cart = [];
+
+  function addToCart(product, price) {
+    cart.push({ product, price });
+    updateCart();
+  }
+
+  function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCart();
+  }
+
+  function resetCart() {
+    cart = [];
+
 
 
 
