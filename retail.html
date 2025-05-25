@@ -6,7 +6,7 @@
   <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
   <script>
     (function () {
-      emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
+      emailjs.init("R8YQ6uFuEg24lKXoj"); // Replace with your EmailJS public key
     })();
   </script>
   <style>
@@ -182,7 +182,7 @@
 
   document.getElementById("order-form").addEventListener("submit", function (e) {
     e.preventDefault();
-    emailjs.sendForm("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", this).then(
+    emailjs.sendForm("service_ps73eee", "template_xkluzkn", this).then(
       function () {
         alert("Order sent! Confirmation email will be sent shortly.");
         resetCart();
