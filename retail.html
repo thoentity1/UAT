@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Phantom studioZ Retail</title>
   <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
   <script>
-    (function() {
+    (function () {
       emailjs.init("R8YQ6uFuEg24lKXoj");
     })();
   </script>
@@ -94,19 +95,19 @@
 
 <div class="product-grid" id="product-list">
   <div class="product-card">
-    <img src="images/shampoo.jpg" alt="Hair braiding Styling Course">
+    <img src="images/shampoo.jpg" alt="Hair Braiding Styling Course" />
     <h3>Hair Braiding Styling Course</h3>
     <p>R850</p>
     <button onclick="addToCart('Hair Braiding Styling Course', 850)">Add to Cart</button>
   </div>
   <div class="product-card">
-    <img src="images/nailkit.jpg" alt="Make Up Artistry Course">
+    <img src="images/nailkit.jpg" alt="Make Up Artistry Course" />
     <h3>Make Up Artistry Course</h3>
     <p>R1200</p>
     <button onclick="addToCart('Make Up Artistry Course', 1200)">Add to Cart</button>
   </div>
   <div class="product-card">
-    <img src="images/nailkit.jpg" alt="Nail Technology Course">
+    <img src="images/nailkit.jpg" alt="Nail Technology Course" />
     <h3>Nail Technology Course</h3>
     <p>R1500</p>
     <button onclick="addToCart('Nail Technology Course', 1500)">Add to Cart</button>
@@ -127,22 +128,22 @@
   <p><strong>Total:</strong> R<span id="total">0</span></p>
 
   <form id="order-form">
-    <input type="hidden" name="to_email" value="thoentity@gmail.com">
-    <input type="hidden" name="yoco_link" value="https://pay.yoco.com/phantomstudioz">
-    
+    <input type="hidden" name="to_email" value="thoentity@gmail.com" />
+    <input type="hidden" name="yoco_link" value="https://pay.yoco.com/phantomstudioz" />
+
     <h3>Delivery Address</h3>
-    <input type="text" name="name" placeholder="Full Name" required>
-    <input type="text" name="email" placeholder="Your Email" required>
-    <input type="text" name="address" placeholder="Street Address" required>
-    <input type="text" name="city" placeholder="City" required>
-    <input type="text" name="zip" placeholder="Postal Code" required>
+    <input type="text" name="name" placeholder="Full Name" required />
+    <input type="text" name="email" placeholder="Your Email" required />
+    <input type="text" name="address" placeholder="Street Address" required />
+    <input type="text" name="city" placeholder="City" required />
+    <input type="text" name="zip" placeholder="Postal Code" required />
 
-    <input type="hidden" name="cart" id="cart-data">
-    <input type="hidden" name="total" id="cart-total">
-    <input type="hidden" name="delivery_details" id="delivery-details">
+    <input type="hidden" name="cart" id="cart-data" />
+    <input type="hidden" name="total" id="cart-total" />
+    <input type="hidden" name="delivery_details" id="delivery-details" />
 
-    <input type="submit" value="Submit Order">
-    <input type="button" value="Reset Cart" onclick="resetCart()">
+    <input type="submit" value="Submit Order" />
+    <input type="button" value="Reset Cart" onclick="resetCart()" />
   </form>
 </div>
 
@@ -162,6 +163,7 @@
   function resetCart() {
     cart = [];
     document.getElementById("delivery").value = "0|Pick-up (Free)";
+    document.getElementById("order-form").reset();
     updateCart();
   }
 
@@ -194,25 +196,32 @@
     deliveryInput.value = `${label} - R${deliveryFee}`;
   }
 
-  document.getElementById("order-form").addEventListener("submit", function(event) {
+  document.getElementById("order-form").addEventListener("submit", function (event) {
     event.preventDefault();
 
+    if (cart.length === 0) {
+      alert("Your cart is empty! Please add at least one item.");
+      return;
+    }
+
     emailjs.sendForm('service_ps73eee', 'template_xkluzkn', this)
-      .then(function(response) {
+      .then(function (response) {
         alert("Order sent! Now redirecting to payment...");
+        resetCart(); // Clear cart and form
         window.location.href = "https://pay.yoco.com/phantomstudioz";
-      }, function(error) {
+      }, function (error) {
         alert("Failed to send order. Try again.");
         console.error("FAILED...", error);
       });
   });
 
-  // Run on load to ensure correct default fee
+  // Initialize on page load
   updateCart();
 </script>
 
 </body>
 </html>
+
 
 
 
