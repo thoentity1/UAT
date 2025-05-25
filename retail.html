@@ -102,6 +102,12 @@
     <button onclick="addToCart('Make Up Artistry Course', 1200)">Add to Cart</button>
   </div>
 </div>
+  <div class="product-card">
+    <img src="images/nailkit.jpg" alt="Nail Technology Course" />
+    <h3>Make Up Artistry Course</h3>
+    <p>R1500</p>
+    <button onclick="addToCart('Make Up Artistry Course', 1200)">Add to Cart</button>
+  </div>
 
 <div id="cart">
   <h2>Your Cart</h2>
@@ -110,8 +116,8 @@
   <label>Delivery Option</label>
   <select id="delivery" onchange="updateCart()">
     <option value="0|Pick-up (Free)">Pick-up (Free)</option>
-    <option value="50|Standard Delivery">Standard Delivery - R50</option>
-    <option value="100|Express Delivery">Express Delivery - R100</option>
+    <option value="50|Standard Delivery">Standard Delivery (Pingo box collection) - R50</option>
+    <option value="100|Express Delivery">Express Delivery (Delivery address) - R150</option>
   </select>
 
   <p><strong>Total:</strong> R<span id="total">0</span></p>
