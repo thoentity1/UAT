@@ -126,8 +126,23 @@
     cart.push({ product, price });
     updateCart();
   }
+<script>
+  // existing functions...
 
-  function updateCart() {
+  function resetCart() {
+    cart = []; // Empty the cart
+    updateCart(); // Refresh cart display
+
+    // Clear the form
+    document.getElementById("order-form").reset();
+
+    // Also clear hidden inputs manually
+    document.getElementById("cart-data").value = "";
+    document.getElementById("cart-total").value = "";
+
+    alert("Cart and form have been reset.");
+  }
+ function updateCart() {
     const cartList = document.getElementById("cart-items");
     const cartDataInput = document.getElementById("cart-data");
     const cartTotalInput = document.getElementById("cart-total");
@@ -165,6 +180,19 @@
 </body>
 </html>
 
+
+
+
+
+
+
+
+
+
+
+
+  
+ 
 
 
      
