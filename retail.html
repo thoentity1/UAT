@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -6,7 +6,7 @@
   <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
   <script>
     (function() {
-      emailjs.init("R8YQ6uFuEg24lKXoj"); // Replace with your actual public key
+      emailjs.init("R8YQ6uFuEg24lKXoj"); // Your EmailJS public key
     })();
   </script>
   <style>
@@ -65,10 +65,19 @@
     form {
       margin-top: 20px;
     }
-    input[type="text"], input[type="submit"] {
+    input[type="text"], input[type="submit"], input[type="button"] {
       padding: 10px;
       margin: 5px 0;
       width: 100%;
+    }
+    #cart-items button {
+      background-color: red;
+      color: white;
+      border: none;
+      margin-left: 10px;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -82,7 +91,7 @@
 <div class="product-grid" id="product-list">
   <div class="product-card">
     <img src="images/shampoo.jpg" alt="Hair braiding Styling Course, kit and Certificate">
-    <h3>Hair braiding Styling Course, kit and Certicate</h3>
+    <h3>Hair braiding Styling Course, kit and Certificate</h3>
     <p>R850 | 1 Set</p>
     <button onclick="addToCart('Hair braiding Styling Course', 850)">Add to Cart</button>
   </div>
@@ -92,78 +101,9 @@
     <p>R1200 | 1 Set</p>
     <button onclick="addToCart('Make Up Artistry Course', 1200)">Add to Cart</button>
   </div>
-</div>
-<div class="product-card">
-    <img src="images/nailkit.jpg" alt="Nail Technology Course, kit, lamp and Certificate">
-    <h3>Nail Technology Course</h3>
-    <p>R1500 | 1 Set</p>
-    <button onclick="addToCart('Nail Technology Course, Kit and lamp', 1500)">Add to Cart</button>
-  </div>
-<div id="cart">
-  <h2>Your Cart</h2>
-  <ul id="cart-items"></ul>
-  <p><strong>Total:</strong> R<span id="total">0</span></p>
+  <div class="product-card">
+    <img src="images/nailkit.jpg" alt="Nail Technology Course, kit
 
-  <form id="order-form">
-  <input type="hidden" name="to_email" value="thoentity@gmail.com">
-  <h3>Delivery Address</h3>
-  <input type="text" name="name" placeholder="Full Name" required>
-  <input type="text" name="email" placeholder="Email" required>
-  <input type="text" name="address" placeholder="Street Address" required>
-  <input type="text" name="city" placeholder="City" required>
-  <input type="text" name="zip" placeholder="Postal Code" required>
-  <input type="hidden" name="cart" id="cart-data">
-  <input type="hidden" name="total" id="cart-total">
-  <input type="submit" value="Submit Order">
-  <input type="button" value="Reset Cart" onclick="resetCart()">
-</form>
-</div>
-
-<script>
-  let cart = [];
-
-  function addToCart(product, price) {
-    cart.push({ product, price });
-    updateCart();
-  }
-
-  function updateCart() {
-    const cartList = document.getElementById("cart-items");
-    const cartDataInput = document.getElementById("cart-data");
-    const cartTotalInput = document.getElementById("cart-total");
-    cartList.innerHTML = "";
-    let total = 0;
-    let summary = [];
-
-    cart.forEach(item => {
-      total += item.price;
-      summary.push(item.product + " - R" + item.price);
-      const li = document.createElement("li");
-      li.textContent = ${item.product} - R${item.price};
-      cartList.appendChild(li);
-    });
-
-    document.getElementById("total").textContent = total;
-    cartDataInput.value = summary.join(", ");
-    cartTotalInput.value = total;
-  }
-
-  document.getElementById("order-form").addEventListener("submit", function(event) {
-    event.preventDefault();
-
-    emailjs.sendForm('service_ps73eee', 'template_xkluzkn', this)
-      .then(function(response) {
-        alert("Order placed successfully!");
-        console.log("SUCCESS!", response.status, response.text);
-      }, function(error) {
-        alert("Failed to send order. Check details and resend.");
-        console.error("FAILED...", error);
-      });
-  });
-</script>
-
-</body>
-</html>
 
 
 
