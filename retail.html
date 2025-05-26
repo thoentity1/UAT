@@ -6,7 +6,7 @@
   <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
   <script>
     (function () {
-      emailjs.init("R8YQ6uFuEg24lKXoj"); // Replace with your EmailJS public key
+      emailjs.init("R8YQ6uFuEg24lKXoj");
     })();
   </script>
   <style>
@@ -89,91 +89,43 @@
 </header>
 
 <div class="product-grid" id="product-list">
-  <div class="product-card">
-    <img src="images/shampoo.jpg" alt="Hair Braiding Styling Course" />
-    <h3>Hair Braiding Styling Course</h3>
-    <p>R850</p>
-    <button onclick="addToCart('Hair Braiding Styling Course', 850)">Add to Cart</button>
-  </div>
-  <div class="product-card">
-    <img src="images/nailkit.jpg" alt="Make Up Artistry Course" />
-    <h3>Make Up Artistry Course</h3>
-    <p>R1200</p>
-    <button onclick="addToCart('Make Up Artistry Course', 1200)">Add to Cart</button>
-  </div>
+  <script>
+    const products = [
+      { name: "Hair Braiding Styling Course", price: 850, image: "images/shampoo.jpg" },
+      { name: "Make Up Artistry Course", price: 1200, image: "images/nailkit.jpg" },
+      { name: "Facial Kit", price: 450, image: "images/facialkit.jpg" },
+      { name: "Skin Glow Serum", price: 350, image: "images/serum.jpg" },
+      { name: "Manicure Set", price: 299, image: "images/manicure.jpg" },
+      { name: "Pedicure Kit", price: 320, image: "images/pedicure.jpg" },
+      { name: "Lash Lift Kit", price: 500, image: "images/lashlift.jpg" },
+      { name: "Acrylic Nail Kit", price: 650, image: "images/acrylic.jpg" },
+      { name: "Hair Relaxer", price: 250, image: "images/relaxer.jpg" },
+      { name: "Wig Making Course", price: 900, image: "images/wig.jpg" },
+      { name: "Scalp Treatment", price: 300, image: "images/scalp.jpg" },
+      { name: "Tint Developer", price: 180, image: "images/tint.jpg" },
+      { name: "Makeup Brushes", price: 220, image: "images/brushes.jpg" },
+      { name: "Hair Curler", price: 400, image: "images/curler.jpg" },
+      { name: "Wax Heater Kit", price: 520, image: "images/wax.jpg" },
+      { name: "BB Glow Kit", price: 800, image: "images/bbglow.jpg" },
+      { name: "Eyelash Extensions", price: 350, image: "images/eyelash.jpg" },
+      { name: "Microblading Tools", price: 770, image: "images/microblading.jpg" },
+      { name: "Nail Polish Set", price: 260, image: "images/nailpolish.jpg" },
+      { name: "Massage Oil", price: 150, image: "images/massage.jpg" },
+      { name: "Skin Cleanser", price: 280, image: "images/cleanser.jpg" }
+    ];
+
+    products.forEach(p => {
+      document.write(`
+        <div class="product-card">
+          <img src="${p.image}" alt="${p.name}" />
+          <h3>${p.name}</h3>
+          <p>R${p.price}</p>
+          <button onclick="addToCart('${p.name}', ${p.price})">Add to Cart</button>
+        </div>
+      `);
+    });
+  </script>
 </div>
-  <div class="product-card">
-    <img src="images/shampoo.jpg" alt="Hair Braiding Styling Course" />
-    <h3>Hair Braiding Styling Course</h3>
-    <p>R850</p>
-    <button onclick="addToCart('Hair Braiding Styling Course', 850)">Add to Cart</button>
-  </div>
-  <div class="product-card">
-    <img src="images/nailkit.jpg" alt="Make Up Artistry Course" />
-    <h3>Make Up Artistry Course</h3>
-    <p>R1200</p>
-    <button onclick="addToCart('Make Up Artistry Course', 1200)">Add to Cart</button>
-  </div>
-  <div class="product-card">
-    <img src="images/shampoo.jpg" alt="Hair Braiding Styling Course" />
-    <h3>Hair Braiding Styling Course</h3>
-    <p>R850</p>
-    <button onclick="addToCart('Hair Braiding Styling Course', 850)">Add to Cart</button>
-  </div>
-  <div class="product-card">
-    <img src="images/nailkit.jpg" alt="Make Up Artistry Course" />
-    <h3>Make Up Artistry Course</h3>
-    <p>R1200</p>
-    <button onclick="addToCart('Make Up Artistry Course', 1200)">Add to Cart</button>
-  </div>
-  <div class="product-card">
-    <img src="images/shampoo.jpg" alt="Hair Braiding Styling Course" />
-    <h3>Hair Braiding Styling Course</h3>
-    <p>R850</p>
-    <button onclick="addToCart('Hair Braiding Styling Course', 850)">Add to Cart</button>
-  </div>
-  <div class="product-card">
-    <img src="images/nailkit.jpg" alt="Make Up Artistry Course" />
-    <h3>Make Up Artistry Course</h3>
-    <p>R1200</p>
-    <button onclick="addToCart('Make Up Artistry Course', 1200)">Add to Cart</button>
-  </div>
-  <div class="product-card">
-    <img src="images/shampoo.jpg" alt="Hair Braiding Styling Course" />
-    <h3>Hair Braiding Styling Course</h3>
-    <p>R850</p>
-    <button onclick="addToCart('Hair Braiding Styling Course', 850)">Add to Cart</button>
-  </div>
-  <div class="product-card">
-    <img src="images/nailkit.jpg" alt="Make Up Artistry Course" />
-    <h3>Make Up Artistry Course</h3>
-    <p>R1200</p>
-    <button onclick="addToCart('Make Up Artistry Course', 1200)">Add to Cart</button>
-  </div>
-  <div class="product-card">
-    <img src="images/shampoo.jpg" alt="Hair Braiding Styling Course" />
-    <h3>Hair Braiding Styling Course</h3>
-    <p>R850</p>
-    <button onclick="addToCart('Hair Braiding Styling Course', 850)">Add to Cart</button>
-  </div>
-  <div class="product-card">
-    <img src="images/nailkit.jpg" alt="Make Up Artistry Course" />
-    <h3>Make Up Artistry Course</h3>
-    <p>R1200</p>
-    <button onclick="addToCart('Make Up Artistry Course', 1200)">Add to Cart</button>
-  </div>
-  <div class="product-card">
-    <img src="images/shampoo.jpg" alt="Hair Braiding Styling Course" />
-    <h3>Hair Braiding Styling Course</h3>
-    <p>R850</p>
-    <button onclick="addToCart('Hair Braiding Styling Course', 850)">Add to Cart</button>
-  </div>
-  <div class="product-card">
-    <img src="images/nailkit.jpg" alt="Make Up Artistry Course" />
-    <h3>Make Up Artistry Course</h3>
-    <p>R1200</p>
-    <button onclick="addToCart('Make Up Artistry Course', 1200)">Add to Cart</button>
-  </div>
 
 <div id="cart">
   <h2>Your Cart</h2>
@@ -267,11 +219,12 @@
     );
   });
 
-  updateCart(); // Initialize cart on load
+  updateCart();
 </script>
 
 </body>
 </html>
+
 
 
 
