@@ -221,6 +221,142 @@
 
   updateCart();
 </script>
+<!-- ✅ Chatbot Widget for Phantom studioZ -->
+<style>
+  #chatWidget {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 300px;
+    height: 400px;
+    background: white;
+    border: 2px solid #444;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    display: none;
+    flex-direction: column;
+    z-index: 9999;
+  }
+
+  #chatHeader {
+    background: #000;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  #chatMessages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  #chatInput {
+    display: flex;
+    border-top: 1px solid #ccc;
+  }
+
+  #chatInput input {
+    flex: 1;
+    border: none;
+    padding: 10px;
+    outline: none;
+  }
+
+  #chatInput button {
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+  }
+
+  .chat-msg {
+    margin: 5px 0;
+  }
+
+  .chat-user {
+    color: #1e90ff;
+  }
+
+  .chat-bot {
+    color: #28a745;
+  }
+
+  #openChatBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background: #000;
+    color: white;
+    border-radius: 50%;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 9999;
+  }
+</style>
+
+<!-- Chat HTML -->
+<div id="chatWidget">
+  <div id="chatHeader" onclick="toggleChat()">Phantom Bot</div>
+  <div id="chatMessages"></div>
+  <div id="chatInput">
+    <input type="text" id="chatUserInput" placeholder="Ask about products or courses...">
+    <button onclick="sendChatMessage()">➤</button>
+  </div>
+</div>
+
+<button id="openChatBtn" onclick="toggleChat()">💬</button>
+
+<script>
+  function toggleChat() {
+    const widget = document.getElementById("chatWidget");
+    if (widget.style.display === "none" || widget.style.display === "") {
+      widget.style.display = "flex";
+    } else {
+      widget.style.display = "none";
+    }
+  }
+
+  function sendChatMessage() {
+    const input = document.getElementById("chatUserInput");
+    const userMessage = input.value.trim();
+    if (userMessage === "") return;
+
+    addMessage("You", userMessage, "chat-user");
+    input.value = "";
+
+    const botReply = getBotReply(userMessage);
+    setTimeout(() => addMessage("Bot", botReply, "chat-bot"), 400);
+  }
+
+  function addMessage(sender, text, className) {
+    const chatBox = document.getElementById("chatMessages");
+    const msg = document.createElement("div");
+    msg.className = `chat-msg ${className}`;
+    msg.innerHTML = `<strong>${sender}:</strong> ${text}`;
+    chatBox.appendChild(msg);
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }
+
+  function getBotReply(msg) {
+    const input = msg.toLowerCase();
+    if (input.includes("course")) return "We offer makeup, hair, and skincare courses. Check the top of this page.";
+    if (input.includes("product") || input.includes("retail")) return "You can order all products listed above. Tap 'Add to Cart' to begin.";
+    if (input.includes("price")) return "Each product shows a price. Let me know which item you're asking about!";
+    if (input.includes("order") || input.includes("buy")) return "Use the cart below the products to complete your order.";
+    if (input.includes("contact")) return "Contact us via email at info@phantomstudioz.com or use our contact form.";
+    if (input.includes("pickup") || input.includes("delivery")) return "You can choose between 'Pick-up (Free)' or enter your delivery address.";
+    return "I'm not sure how to respond. Try asking about our products, courses, prices, or how to order.";
+  }
+</script>
+<!-- ✅ End Chatbot Widget -->
 
 </body>
 
