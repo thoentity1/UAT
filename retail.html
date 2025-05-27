@@ -223,7 +223,7 @@
 </script>
 
 </body>
- <!-- ✅ Phantom studioZ Chatbot Widget -->
+<!-- ✅ Chatbot Widget for Phantom studioZ -->
 <style>
   #chatWidget {
     position: fixed;
@@ -317,7 +317,6 @@
 <button id="openChatBtn" onclick="toggleChat()">💬</button>
 
 <script>
-  // Ensure the widget is toggled correctly
   function toggleChat() {
     const widget = document.getElementById("chatWidget");
     if (widget.style.display === "none" || widget.style.display === "") {
@@ -327,7 +326,6 @@
     }
   }
 
-  // Send user message and respond
   function sendChatMessage() {
     const input = document.getElementById("chatUserInput");
     const userMessage = input.value.trim();
@@ -340,7 +338,6 @@
     setTimeout(() => addMessage("Bot", botReply, "chat-bot"), 400);
   }
 
-  // Append message to chat box
   function addMessage(sender, text, className) {
     const chatBox = document.getElementById("chatMessages");
     const msg = document.createElement("div");
@@ -350,18 +347,11 @@
     chatBox.scrollTop = chatBox.scrollHeight;
   }
 
-  // Simple static response logic
   function getBotReply(msg) {
     const input = msg.toLowerCase();
-    if (input.includes("course")) return "We offer makeup, hair, and skincare courses. Visit our 'Courses' page.";
-    if (input.includes("product") || input.includes("retail")) return "You can shop our retail items here on this page.";
-    if (input.includes("price")) return "Each product has a price listed. Click any item to view more.";
-    if (input.includes("order") || input.includes("buy")) return "Add items to your cart and proceed to checkout.";
-    if (input.includes("contact")) return "You can email us at thoentity@gmail.com or use our contact form.";
-    return "I'm not sure how to respond. Try asking about our products, courses, or how to place an order.";
-  }
-</script>
-<!-- ✅ End Chatbot -->
+    if (input.includes("course")) return "We offer makeup, hair, and skincare courses. Check the top of this page.";
+    if (input.includes("product") || input.includes("retail")) return "You can order all products listed
+
 
 
 </html>
